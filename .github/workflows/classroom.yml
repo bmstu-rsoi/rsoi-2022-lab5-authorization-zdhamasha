@@ -55,6 +55,7 @@ jobs:
           echo $kubeconfig | base64 -d > /tmp/k8s-config
           helm upgrade --install ${GITHUB_REF##*/} --kubeconfig /tmp/k8s-config --namespace=$NAMESPACE ./cicd/flight-system
           sleep 120
+          kubectl get pods --namespace=$NAMESPACE
           
       # - name: Run API Tests
       #   uses: matt-ball/newman-action@master
