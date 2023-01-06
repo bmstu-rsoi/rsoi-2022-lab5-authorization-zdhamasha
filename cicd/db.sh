@@ -2,7 +2,8 @@
 
 # deploy db 
 helm upgrade --install \
-    --set postgresqlPassword=P@ssw0rd \
+    --set auth.postgresPassword=P@ssw0rd \
+    --set image.tag=11.7.0-debian-10-r9 \
     --set resources.requests.cpu="100m" \
     --set resources.requests.memory="256Mi" \
     --set resources.limits.cpu="1000m" \
