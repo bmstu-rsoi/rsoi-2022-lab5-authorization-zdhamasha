@@ -4,32 +4,32 @@
 	"values": [
 		{
 			"key": "serviceUrl",
-			"value": "",
+			"value": "https://deployment-gateway.devops-dev-ing.progressoft.cloud",
 			"enabled": true
 		},
 		{
 			"key": "identityProviderUrl",
-			"value": "",
+			"value": "https://dev-44730708.okta.com/oauth2/default",
 			"enabled": true
 		},
 		{
 			"key": "username",
-			"value": "",
+			"value": "testuser@gmail.com",
 			"enabled": true
 		},
 		{
 			"key": "password",
-			"value": "",
+			"value": "P@ssw0rd123",
 			"enabled": true
 		},
 		{
 			"key": "clientId",
-			"value": "",
+			"value": "0oa7vd1z179Nv1vzj5d7",
 			"enabled": true
 		},
 		{
 			"key": "clientSecret",
-			"value": "",
+			"value": "lD55HbsXL4zsZ80ySx0IYNd15xu1F1KsOm8hNNN6",
 			"enabled": true
 		}
 	],
