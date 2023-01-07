@@ -129,12 +129,12 @@ public class FlightGateway {
     }
 
     @GetMapping("me")
-    public ResponseEntity<UserInformationResponse> findUserInfo(@RequestHeader("X-User-Name") String username) {
+    public ResponseEntity<UserInformationResponse> findUserInfo(Authentication authentication) {
         String url = UriComponentsBuilder.fromHttpUrl(privilegeServiceUrl).toUriString();
 
-        Privilege privilege = getPrivilegeResponseEntity(url, username).getBody();
+        Privilege privilege = getPrivilegeResponseEntity(url, authentication.getName()).getBody();
         UserInformationResponse response = new UserInformationResponse();
-        response.setTickets(findAllUserTicketsByUsername(username));
+        response.setTickets(findAllUserTicketsByUsername(authentication.getName()));
         response.setPrivilege(privilege);
 
         return ResponseEntity.ok(response);
