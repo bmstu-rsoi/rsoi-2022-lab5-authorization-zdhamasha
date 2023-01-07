@@ -71,7 +71,8 @@ public class FlightGateway {
 
     private Privilege getPrivilege(String username) {
         String url = UriComponentsBuilder.fromHttpUrl(privilegeServiceUrl).toUriString();
-
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-User-Name", username);
         return getPrivilegeResponseEntity(url, username).getBody();
     }
 
