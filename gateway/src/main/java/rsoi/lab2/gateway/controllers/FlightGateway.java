@@ -1,5 +1,14 @@
 package rsoi.lab2.gateway.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +17,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import rsoi.lab2.gateway.requests.PurchaseTicketRequest;
 import rsoi.lab2.gateway.responses.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
 import java.util.*;
 
@@ -28,6 +40,22 @@ public class FlightGateway {
     @Value("${services.urls.TICKETS_SERVICE_URL}")
     private String ticketsServiceUrl;
 
+    @Operation(summary = "Login", operationId = "login")
+    @GetMapping("/authorize")
+    public ResponseEntity<String> authorize() {
+
+        return null;
+
+    }
+
+    @Operation(summary = "Callback", operationId = "callback")
+    @GetMapping("/callback")
+    public ResponseEntity<String> callback() {
+
+        return null;
+
+    }
+
     @GetMapping("/flights")
     public ResponseEntity<Object> findAllFlights(@RequestParam int page, @RequestParam int size) {
         String url = UriComponentsBuilder.fromHttpUrl(flightServiceUrl).queryParam("page", page).queryParam("size", size).toUriString();
@@ -36,8 +64,8 @@ public class FlightGateway {
     }
 
     @GetMapping("/privilege")
-    public ResponseEntity<Privilege> findPrivilege(@RequestHeader("X-User-Name") String username) {
-        Privilege privilege = getPrivilege(username);
+    public ResponseEntity<Privilege> findPrivilege(Authentication authentication) {
+        Privilege privilege = getPrivilege(authentication.getName());
         return ResponseEntity.ok(privilege);
     }
 
