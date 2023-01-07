@@ -97,8 +97,8 @@ public class FlightGateway {
     }
 
     @GetMapping("tickets")
-    public ResponseEntity<List<FindAllUserTicketsResponse>> findAllUserTickets(@RequestHeader("X-User-Name") String username) {
-        return ResponseEntity.ok(findAllUserTicketsByUsername(username));
+    public ResponseEntity<List<FindAllUserTicketsResponse>> findAllUserTickets(Authentication authentication) {
+        return ResponseEntity.ok(findAllUserTicketsByUsername(authentication.getName()));
     }
 
     @DeleteMapping("/tickets/{ticketUid}")
