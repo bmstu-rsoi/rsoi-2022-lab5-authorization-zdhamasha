@@ -1,5 +1,5 @@
 {
-	"id": "acc90f86-88ad-444e-924e-6f48f6ee7711",
+	"id": "c985b2ba-6dc9-4a6b-a501-3afa6ef82d03",
 	"name": "[rsoi][lab5] Flight Service",
 	"values": [
 		{
@@ -34,6 +34,6 @@
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2021-10-15T18:17:23.977Z",
-	"_postman_exported_using": "Postman/9.0.5"
+	"_postman_exported_at": "2023-01-07T22:23:22.649Z",
+	"_postman_exported_using": "Postman/9.31.0"
 }
