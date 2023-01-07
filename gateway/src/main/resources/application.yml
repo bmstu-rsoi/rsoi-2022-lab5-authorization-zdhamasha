@@ -2,10 +2,22 @@ server.port: 8080
 
 server.address: 0.0.0.0
 spring.application.name: flight-system-gateway
-spring.profiles.active: test
 
 services:
   urls:
     FLIGHT_SERVICE_URL: http://${FLIGHT_SERVICE_URL}/api/v1/flights
     PRIVILEGE_SERVICE_URL: http://${PRIVILEGE_SERVICE_URL}/api/v1/privilege
     TICKETS_SERVICE_URL: http://${TICKETS_SERVICE_URL}/api/v1/tickets
+
+okta:
+  oauth2:
+    issuer: https://dev-44730708.okta.com/oauth2/default
+    client-id: 0oa7vd1z179Nv1vzj5d7
+    client-secret: lD55HbsXL4zsZ80ySx0IYNd15xu1F1KsOm8hNNN6
+    redirect-uri: https://deployment-gateway.devops-dev-ing.progressoft.cloud/api/v1/callback/
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://dev-44730708.okta.com/oauth2/default/v1/keys
