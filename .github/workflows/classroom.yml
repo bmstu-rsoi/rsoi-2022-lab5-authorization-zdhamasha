@@ -53,6 +53,7 @@ jobs:
         run: |
           export kubeconfig=$KUBE_CONFIG
           echo $kubeconfig | base64 -d > /tmp/k8s-config
+          helm delete ${GITHUB_REF##*/} --kubeconfig /tmp/k8s-config --namespace=$NAMESPACE
           helm upgrade --install ${GITHUB_REF##*/} --kubeconfig /tmp/k8s-config --namespace=$NAMESPACE ./cicd/flight-system
           sleep 120
           kubectl get pods --kubeconfig /tmp/k8s-config --namespace=$NAMESPACE
