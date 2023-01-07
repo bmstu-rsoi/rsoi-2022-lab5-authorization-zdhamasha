@@ -77,11 +77,11 @@ public class FlightGateway {
     }
 
     @PostMapping("/tickets")
-    public ResponseEntity<Object> purchaseTicket(@RequestHeader("X-User-Name") String username, @RequestBody PurchaseTicketRequest request) {
+    public ResponseEntity<Object> purchaseTicket(Authentication authentication, @RequestBody PurchaseTicketRequest request) {
         if (isFlightExists(request)) {
             FlightResponse flightResponse = getFlightResponse(request.getFlightNumber());
-            PurchaseTicketResponse purchaseTicketResponse = getPurchaseTicketResponse(request, username);
-            PrivilegeResponse privilegeResponse = getPrivilegeResponse(request, username);
+            PurchaseTicketResponse purchaseTicketResponse = getPurchaseTicketResponse(request, authentication.getName());
+            PrivilegeResponse privilegeResponse = getPrivilegeResponse(request, authentication.getName());
             addToPrivilegeHistory(purchaseTicketResponse.getTicketUid().toString(), privilegeResponse.getId(), privilegeResponse.getBalance() - request.getPrice());
             return ResponseEntity.ok(getBuyTicketResponse(flightResponse, purchaseTicketResponse, privilegeResponse));
         }
